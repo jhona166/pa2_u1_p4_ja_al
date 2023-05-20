@@ -2,6 +2,7 @@ package com.example.demo;
 
 public class MatriculaCalculo {
 		public void realizarMatricula(String tipo) {
+
 			if(tipo.equals("1")) {
 				Materia mat = new Materia();
 				mat.setNombre("P. web");
