@@ -1,5 +1,7 @@
 package com.example.demo.repository;
 
+import java.util.List;
+
 import com.example.demo.repository.modelo.Estudiante;
 
 public interface EstudianteRepository {
@@ -11,6 +13,7 @@ public interface EstudianteRepository {
 	public Estudiante seleccionar(String cedula);
 
 	// Eliminamos por identificador
-	public void eliminar(Integer id);
+	public void eliminar(String cedula);
+	public List<Estudiante> seleccionarTodos();
 
 }

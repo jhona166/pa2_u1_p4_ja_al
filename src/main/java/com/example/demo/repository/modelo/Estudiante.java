@@ -7,13 +7,19 @@ public class Estudiante {
 	private String apellido;
 	private String cedula;
 	private LocalDateTime fecha;
-	private String fechaNacimiento;
+	private LocalDateTime fechaNacimiento;
 	
 	
 	//Set and Get
 	
 	public String getNombre() {
 		return nombre;
+	}
+	public LocalDateTime getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+	public void setFechaNacimiento(LocalDateTime fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
@@ -36,11 +42,12 @@ public class Estudiante {
 	public void setFecha(LocalDateTime fecha) {
 		this.fecha = fecha;
 	}
-	public String getFechaNacimiento() {
-		return fechaNacimiento;
-	}
-	public void setFechaNacimiento(String fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
+	
+	
+	@Override
+	public String toString() {
+		return "Estudiante [nombre=" + nombre + ", apellido=" + apellido + ", cedula=" + cedula + ", fecha=" + fecha
+				+ ", fechaNacimiento=" + fechaNacimiento + "]";
 	}
 	
 	
