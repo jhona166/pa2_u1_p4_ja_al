@@ -1,0 +1,34 @@
+package com.example.demo.banco.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.banco.repository.CuentaRepository;
+import com.example.demo.banco.repository.modelo.Cuenta;
+
+@Service
+
+public class CuentaServiceImpl implements CuentaService{
+	@Autowired
+	private CuentaRepository cuentaRepository;
+	@Override
+	public void guardar(Cuenta cuenta) {
+		this.cuentaRepository.insertar(cuenta);
+	}
+
+	@Override
+	public void actualiza(Cuenta cuenta) {
+		this.cuentaRepository.actualiza(cuenta);
+	}
+
+	@Override
+	public void borrar(String numero) {
+		this.cuentaRepository.eliminar(numero);
+	}
+
+	@Override
+	public Cuenta seleccionarPorNumero(String numero) {
+		return this.cuentaRepository.seleccionarPorNumero(numero);
+	}
+
+}
