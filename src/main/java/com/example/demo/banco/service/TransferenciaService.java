@@ -1,5 +1,7 @@
 package com.example.demo.banco.service;
 
+import java.math.BigDecimal;
+
 import com.example.demo.banco.repository.modelo.Transferencia;
 
 public interface TransferenciaService {
@@ -7,4 +9,5 @@ public interface TransferenciaService {
 	public void actualiza(Transferencia transferencia);
 	public void borrar(String numero);
 	public Transferencia seleccionarPorNumero(String numero);
+	public void realizar(String numeroCtaOrigen, String numeroCtaDestino, BigDecimal monto);
 }
