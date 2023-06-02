@@ -10,7 +10,7 @@ public class MontoDebitarInternacionalServiceImpl implements MontoDebitarService
 	@Override
 	public BigDecimal calcular(BigDecimal monto) {
 		// TODO Auto-generated method stub
-		BigDecimal comision = monto.multiply(new BigDecimal(0.1));
+		BigDecimal comision = monto.multiply(new BigDecimal(10).divide(new BigDecimal(100)));
 		return monto.add(comision);
 	}
 

@@ -51,25 +51,26 @@ public class TransferenciaServiceImpl implements TransferenciaService{
 	@Override
 	public void realizar(String numeroCtaOrigen, String numeroCtaDestino, BigDecimal monto) {
 		//1. consultar la cuenta de origen por el numero de cuenta
-		Cuenta ctaOrigen = this.bancariaRepository.seleccionarPorNumero(numeroCtaDestino);
+		Cuenta ctaOrigen = this.bancariaRepository.seleccionarPorNumero(numeroCtaOrigen);
 		
 		//2. consultar el saldo de la cuenta origen
-		BigDecimal saldoOrigen = ctaOrigen.getSaldo();
+		BigDecimal saldoCtaOrigen = ctaOrigen.getSaldo();
+		BigDecimal montoDebitar = this.debitarService.calcular(monto); 
 		//3. validar si el saldo es suficiente
-		if(monto.compareTo(saldoOrigen)<=0) {
+		if(montoDebitar.compareTo(saldoCtaOrigen)<=0) {
 			
 			//5. si es suficiente ir al paso 6
 			//6. ralizamos la resta del saldo origen - monto
-			BigDecimal nuevoSaldoOrigen =  saldoOrigen.subtract(monto);
+			BigDecimal nuevoSaldoOrigen =  saldoCtaOrigen.subtract(montoDebitar);
 			//7. actualizamos el nuevo saldo de la ceunta origen
 			ctaOrigen.setSaldo(nuevoSaldoOrigen);
 			this.bancariaRepository.actualiza(ctaOrigen);
 			//8. Consultamos la cuenta de destino por el numero
 			Cuenta ctaDestino = this.bancariaRepository.seleccionarPorNumero(numeroCtaDestino);
 			//9. Consultamos el saldo de la cuenta destino
-			BigDecimal saldoDestino = ctaDestino.getSaldo();
+			BigDecimal saldoCtaDestino = ctaDestino.getSaldo();
 			//10. realizamos la suma del saldo destino + monto
-			BigDecimal nuevoSaldoDestino= saldoDestino.add(monto);
+			BigDecimal nuevoSaldoDestino= saldoCtaDestino.add(monto);
 			//11. actualizamos el nuevo saldo de la cuenta destino
 			ctaDestino.setSaldo(nuevoSaldoDestino);
 			this.bancariaRepository.actualiza(ctaDestino);
@@ -85,7 +86,7 @@ public class TransferenciaServiceImpl implements TransferenciaService{
 		}else {
 			
 			//4. si no es suficiente imprimir mensaje de no hay saldo
-			System.out.println("Saldo no disponible, su saldo es: " + saldoOrigen);
+			System.out.println("Saldo no disponible, su saldo es: " +saldoCtaOrigen );
 		}
 		
 		
