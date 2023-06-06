@@ -3,6 +3,9 @@ package com.example.demo.banco.repository.modelo;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+@Component
 public class Transferencia {
 	private String numero;
 	private BigDecimal monto;
